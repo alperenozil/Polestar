@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Stack;
 
 public class Solution {
-    private String input="<([]){()}[{}])";
+    private String input="<{([([[(<>()){}]>(<<{{";
     private String findFirstIllegalCharacter(String input) {
         Stack<Character> characterStack = new Stack();
         for(int i=0; i<input.length(); i++){
@@ -48,7 +48,19 @@ public class Solution {
         }
         return "complete";
     }
-    public String getFirstIllegalCharacter() {
-        return findFirstIllegalCharacter(input);
+    public static int getPointOfIllegalCharacter(String illegalCharacter) {
+        if(illegalCharacter.equals("}")){
+            return 1197;
+        } else if(illegalCharacter.equals(")")){
+            return 3;
+        } else if(illegalCharacter.equals("]")){
+            return 57;
+        } else if(illegalCharacter.equals(">")){
+            return 25137;
+        }
+        return 0;
+    }
+    public int getPointOfFirstIllegalCharacter() {
+        return getPointOfIllegalCharacter(findFirstIllegalCharacter(input));
     }
 }
