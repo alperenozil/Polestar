@@ -4,7 +4,16 @@ import java.util.HashSet;
 import java.util.Stack;
 
 public class Solution {
-    private String input="<{([([[(<>()){}]>(<<{{";
+    private String input="[({(<(())[]>[[{[]{<()<>>\n" +
+            "[(()[<>])]({[<{<<[]>>(\n" +
+            "{([(<{}[<>[]}>{[]{[(<()>\n" +
+            "(((({<>}<{<{<>}{[]{[]{}\n" +
+            "[[<[([]))<([[{}[[()]]]\n" +
+            "[{[{({}]{}}([{[{{{}}([]\n" +
+            "{<[[]]>}<{[{[{[]{()[[[]\n" +
+            "[<(<(<(<{}))><([]([]()\n" +
+            "<{([([[(<>()){}]>(<<{{\n" +
+            "<{([{{}}[<[[[<>{}]]]>[]]";
     private String findFirstIllegalCharacter(String input) {
         Stack<Character> characterStack = new Stack();
         for(int i=0; i<input.length(); i++){
@@ -48,7 +57,7 @@ public class Solution {
         }
         return "complete";
     }
-    public static int getPointOfIllegalCharacter(String illegalCharacter) {
+    private int getPointOfIllegalCharacter(String illegalCharacter) {
         if(illegalCharacter.equals("}")){
             return 1197;
         } else if(illegalCharacter.equals(")")){
@@ -60,7 +69,11 @@ public class Solution {
         }
         return 0;
     }
-    public int getPointOfFirstIllegalCharacter() {
-        return getPointOfIllegalCharacter(findFirstIllegalCharacter(input));
+    public void calculateTotalPoints() {
+        int result=0;
+        for(String line : input.split("\n")){
+            result+=getPointOfIllegalCharacter(findFirstIllegalCharacter(line));
+        }
+        System.out.println(result);
     }
 }
